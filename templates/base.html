@@ -1,0 +1,64 @@
+{% load static %}
+<html>
+<head>
+    <title></title>
+    <link rel="stylesheet" href="{% static 'css/table.css' %}">
+</head>
+
+<body>
+{% if request.user.is_authenticated %}
+    <br>
+    <button id="LogOutButton" class="btn btn-primary btn-small">Log Out</button>
+    <br>
+    <a href="/catalog/">
+        <br>
+        <button id="MainPageButton" class="btn btn-primary btn-small">Main</button>
+    </a>
+    <br>
+    <br>
+    <a href="/orderlist/">
+        <button class="btn btn-primary btn-small">Orders</button>
+    </a>
+    <br>
+
+{% else %}
+    <br>
+    <button id="LoginButton" class="btn btn-primary btn-large">Login</button>
+    <br>
+{% endif %}
+{% if request.user.is_superuser %}
+    <br>
+    <button id="EditButton" class="btn btn-primary btn-small">Edit</button>
+    <br>
+    <br>
+    <a href="/add/">
+        <button id="CreateItemButton" class="btn btn-primary btn-small">Add</button>
+    </a>
+    <br>
+    <br>
+    <a href="/refunds/">
+        <button id="RefundRedirectButton" class="btn btn-primary btn-small">Refunds</button>
+    </a>
+
+{% endif %}
+{% include 'message.html' %}
+
+{% include "paginator.html" %}
+{% block content %}
+{% endblock %}
+</body>
+<script type="text/javascript">
+    document.getElementById("LogOutButton").onclick = function () {
+        location.href = "/logout/"
+    };
+
+</script>
+<script type="text/javascript">
+
+    document.getElementById("LoginButton").onclick = function () {
+        location.href = "/login/"
+    };
+
+</script>
+
+</html>

@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="container">
+        <h2>Refund List</h2>
+        <table>
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for refund in refund_list %}
+                <tr>
+                    <td>{{ refund.order.item.name }}
+                    </td>
+                    <td>${{ refund.order.count_total_price }}</td>
+                    <td>
+                        <form method="POST"
+                              action="{% url "refund_approval" refund.id%}">
+                            {% csrf_token %}
+                            <input type="hidden" name="refund_id" value="{{ refund.id }}">
+                            <input type="hidden" name="action" id="action" value="approve">
+                            <button type="submit" class="btn btn-primary btn-large btn-block">Approve</button>
+                            <button type="submit" class="btn btn-primary btn-large btn-block"
+                                    onclick="document.getElementById('action').value = 'reject';">
+                                Reject
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,25 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+</head>
+<body>
+    <div class="login">
+        <h1>Sign Up</h1>
+        <form method="post">
+            {% csrf_token %}
+            {{ form }}
+
+        <input type="submit" value="Create" class="btn btn-primary btn-large btn-block" />
+            </form>
+        <button id="myButton"  class="btn btn-primary btn-large btn-block" >I have an account</button>
+        </div>
+</body>
+<script type="text/javascript">
+    document.getElementById("myButton").onclick = function () {
+        location.href = "/login/";
+    };
+</script>
+</html>

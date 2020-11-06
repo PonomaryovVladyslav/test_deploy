@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="container">
+        <table>
+            <thead>
+            <tr>
+                <th>Item</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th>Stored</th>
+                <th>Amount</th>
+                <th>Buy</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for item in item_list %}
+                <tr>
+                    <form method="post" , action="{% url 'buy' %}">
+                        {% csrf_token %}
+                        <td>{{ item.name }}</td>
+                        <td>{{ item.description }}</td>
+                        <td>${{ item.price }}</td>
+                        <td>{{ item.amount_available }}</td>
+                        <td>{{ form.amount }}</td>
+                        <input type="hidden" name="item_id" value="{{ item.id }}">
+                        <input type="hidden" name="user_id" value="{{ user.id }}">
+                        <td>
+                            <button>Buy</button>
+                        </td>
+                    </form>
+                    {% if request.user.is_superuser %}
+                        <td>
+                            <a href="/edit/{{ item.id }}">
+                                <button id="EditButton" class="btn btn-primary btn-small">Edit</button>
+                            </a>
+                        </td>
+                        </div>
+                    {% endif %}
+                </tr>
+            {% endfor %}
+    </tbody>
+    </table>
+    </div>
+{% endblock %}
