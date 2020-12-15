@@ -121,3 +121,14 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 AUTH_USER_MODEL = 'myapp.User'
+
+if os.environ.get('PROD'):
+    try:
+        from .settings_prod import *
+    except ImportError:
+        pass
+else:
+    try:
+        from .settings_local import *
+    except ImportError:
+        pass
