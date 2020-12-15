@@ -13,3 +13,7 @@ DATABASES = {
         'PORT': os.environ.get('DBPORT', '5432'),
     }
 }
+
+STATICFILES_DIRS = ['myapp/static']
+
+STATIC_ROOT = 'static'
