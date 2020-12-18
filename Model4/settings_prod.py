@@ -1,6 +1,5 @@
 import os
 from .settings import INSTALLED_APPS
-
 INSTALLED_APPS.append('storages')
 
 DEBUG = False
