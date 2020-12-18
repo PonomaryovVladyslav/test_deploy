@@ -4,7 +4,7 @@ from .settings import INSTALLED_APPS
 INSTALLED_APPS.append('storages')
 
 DEBUG = False
-ALLOWED_HOSTS = ['100.26.171.115']
+ALLOWED_HOSTS = ['a-level-test.com']
 
 DATABASES = {
     'default': {
