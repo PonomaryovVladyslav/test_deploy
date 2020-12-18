@@ -1,6 +1,6 @@
 import os
 from .settings import INSTALLED_APPS
-from .custom_storages import StaticStorage, MediaStorage
+
 INSTALLED_APPS.append('storages')
 
 DEBUG = False
@@ -34,8 +34,8 @@ AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET')
 
 # Tell the staticfiles app to use S3Boto3 storage when writing the collected static files (when
 # you run `collectstatic`).
-# STATICFILES_LOCATION = 'static'
-# STATICFILES_STORAGE = StaticStorage
-#
-# MEDIAFILES_LOCATION = 'media'
-# DEFAULT_FILE_STORAGE = MediaStorage
+STATICFILES_LOCATION = 'static'
+STATICFILES_STORAGE = 'storages.StaticStorage'
+
+MEDIAFILES_LOCATION = 'media'
+DEFAULT_FILE_STORAGE = 'storages.MediaStorage'
